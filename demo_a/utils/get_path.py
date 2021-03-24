@@ -20,7 +20,7 @@ cases_path = base_dir + os.sep + "test_cases"
 logs_path = base_dir + os.sep + "logs"
 
 # print(base_dir)
-print(reports_path)
+# print(reports_path)
 # print(data_path)
 # print(pages_path)
 # print(cases_path)

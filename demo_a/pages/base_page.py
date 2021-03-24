@@ -1,28 +1,26 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-from demo_a.utils.get_log import logger
+from demo_a.utils.get_log import Log
 
 
 class BasePage:
-    """
-        使用调试复用的方式进入到管理员页面
-        """
-    _driver: WebDriver
-    _logger = logger
-    _debugger_address = "127.0.0.1:9222"
-    _url = "https://work.weixin.qq.com/wework_admin/frame"
+    logger = Log()
 
-    def __init__(self):
-        if self._driver is None:
-            options = Options()
-            options.debugger_address = self._debugger_address
-            self._driver = webdriver.Chrome(options)
-            self._driver.get(self._url)
-        self._driver.implicitly_wait(3)
+    def __init__(self, driver):
+        self.driver: WebDriver = driver
 
     def find(self, by, value):
-        return self._driver.find_element(by, value)
+        self.logger.info("[查找元素] by=" + by + ",value=" + value)
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.visibility_of_element_located((by, value)))
+        return self.driver.find_element(by, value)
+
+    def click(self, locator):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.element_to_be_clickable(locator))
+        self.driver.find_element(*locator).click()
