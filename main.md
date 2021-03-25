@@ -29,3 +29,10 @@
 - 步骤1: 把浏览器放入环境变量
 - 步骤2: 开启浏览器调试模式 `chrome --remote-debugging-port=9222`
 - 步骤3: `options=Options();options.debugger_address="127.0.0.1:9222"` 此时不需要重新打开页面
+
+## 技巧
+
+### 生成 requirements.txt 以及安装依赖
+
+- 生成 requirements.txt: `$ pip freeze > requirements.txt`
+- 使用 requirements.txt 安装依赖: `$ pip install -r requirements.txt`
