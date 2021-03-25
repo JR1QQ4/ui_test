@@ -66,11 +66,11 @@ class Log:
         ch = logging.StreamHandler()
         ch.setLevel(logging.DEBUG)
         ch_formatter_debug = logging.Formatter(
-            Fore.YELLOW + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)" + Fore.GREEN + " [%(levelname)s]: %(message)s")
+            Fore.YELLOW + "%(asctime)s" + Fore.GREEN + " [%(levelname)s]: %(message)s")
         ch.setFormatter(ch_formatter_debug)
         self.logger.addHandler(ch)
 
-        # create formatter and add it to the handlersl
+        # create formatter and add it to the handlers
 
         fh_all = logging.FileHandler(all_log_path, encoding="utf-8")
         fh_all.setLevel(logging.DEBUG)

@@ -10,3 +10,7 @@ def account_data():
     with open(data_filename, "r", encoding="utf-8") as f:
         arr = json.load(f)
         return arr
+
+
+if __name__ == '__main__':
+    print(account_data())
