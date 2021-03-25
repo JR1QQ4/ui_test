@@ -38,3 +38,12 @@ class TestAddMember(TestBase):
 
     def test_check_department(self):
         self.main.goto_add_member_two().check_department()
+
+    def test_has_member_phone(self):
+        assert self.main.goto_member().has_member_phone("13800000346")
+
+    def test_del_member_by_name(self):
+        contacts_url = "https://work.weixin.qq.com/wework_admin/frame#contacts"
+        member = self.main.goto_member()
+        assert member.del_member_by_name("邢昂")
+        assert member.goto_url(contacts_url).has_member_name("邢昂")

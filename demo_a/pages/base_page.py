@@ -29,6 +29,10 @@ class BasePage:
         if self._url != "":
             self._driver.get(self._url)
 
+    def goto_url(self, url):
+        self._driver.get(url)
+        return self
+
     def wait_for_visibility(self, locator, time=10):
         try:
             wait = WebDriverWait(self._driver, time)
