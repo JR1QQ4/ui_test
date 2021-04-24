@@ -245,6 +245,8 @@
 - Different results for the same action are modeled as different methods
     - 不同的结果返回不同的方法，不同的模式
 
+## 技巧
+
 ### 登录问题
 
 #### 解决方法一: 浏览器复用
@@ -253,9 +255,25 @@
 - 步骤2: 开启浏览器调试模式 `chrome --remote-debugging-port=9222`
 - 步骤3: `options=Options();options.debugger_address="127.0.0.1:9222"` 此时不需要重新打开页面
 
-## 技巧
+#### 其他
+
+- 使用 Cookie
+- 使用第三方 API，比如，聚合验证码识别
+- 使用第三方库，比如，pytesseract 模块和 PIL 模块处理简单验证码
 
 ### 生成 requirements.txt 以及安装依赖
 
 - 生成 requirements.txt: `$ pip freeze > requirements.txt`
 - 使用 requirements.txt 安装依赖: `$ pip install -r requirements.txt`
+
+### 文件上传问题
+
+- 方法一：pywinauto, pip install pywinauto
+    - 只能在 windows 上使用；但可以选择多个文件，路径中有中文也可以
+    - `from pywinauto.keyboard import send_keys; send_keys('c:\a.png'); send_keys('c:\d.png'); send_keys('{VK_RETURN}')`
+- 方法二：pyautogui, pip install pyautogui
+    - 跨平台（linux,mac,windows）；但只能选择一个文件，文件路径有中文会出现问题
+    - `pyautogui.write('D:\a.png'); pyautogui.press('enter', 2)`
+- 其他：Autolt库；SendKeys库（不推荐）；Python pywin32库
+    - pip install -U pyautoit 或者 下载文件 python setup.py install
+    - 工具：pywin32 和 spy++
