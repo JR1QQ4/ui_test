@@ -5,7 +5,7 @@ import sys
 
 from colorama import Style, Fore
 
-from demo_a.utils.get_path import *
+# from demo_a.utils.get_path import *
 
 
 class LevelFilter(logging.Filter):
@@ -15,36 +15,36 @@ class LevelFilter(logging.Filter):
 
     def filter(self, record):
         ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
         if record.levelno == logging.DEBUG:
-            ch.setLevel(logging.DEBUG)
             ch_formatter_debug = logging.Formatter(
-                Fore.BLUE + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
+                Fore.GREEN + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
             ch.setFormatter(ch_formatter_debug)
             self.logger.addHandler(ch)
             return True
         elif record.levelno == logging.INFO:
-            ch.setLevel(logging.INFO)
+            # ch.setLevel(logging.INFO)
             ch_formatter_info = logging.Formatter(
-                Fore.GREEN + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
+                Fore.BLUE + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
             ch.setFormatter(ch_formatter_info)
             self.logger.addHandler(ch)
             return True
         elif record.levelno == logging.WARNING:
-            ch.setLevel(logging.WARNING)
+            # ch.setLevel(logging.WARNING)
             ch_formatter_warning = logging.Formatter(
                 Fore.YELLOW + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
             ch.setFormatter(ch_formatter_warning)
             self.logger.addHandler(ch)
             return True
         elif record.levelno == logging.ERROR:
-            ch.setLevel(logging.ERROR)
+            # ch.setLevel(logging.ERROR)
             ch_formatter_error = logging.Formatter(
                 Fore.RED + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
             ch.setFormatter(ch_formatter_error)
             self.logger.addHandler(ch)
             return True
         elif record.levelno == logging.CRITICAL:
-            ch.setLevel(logging.CRITICAL)
+            # ch.setLevel(logging.CRITICAL)
             ch_formatter_critical = logging.Formatter(
                 Fore.LIGHTRED_EX + "%(asctime)s-%(filename)s-%(module)s(%(lineno)d)[%(levelname)s]: %(message)s")
             ch.setFormatter(ch_formatter_critical)
@@ -111,3 +111,15 @@ class Log:
 # logger.warning('warn message')
 # logger.error('error message')
 # logger.critical('critical message')
+
+if __name__ == '__main__':
+    log = logging.getLogger('test')
+    # log.setLevel(logging.INFO)
+    # stream_handler = logging.StreamHandler(sys.stdout)
+    # log.addHandler(stream_handler)
+    # log.warning('this is warning-1')
+    # log.info('this is info-1')
+
+    log.addFilter(LevelFilter(log))
+    log.warning('this is warning-2')
+    log.info('this is info-2')
