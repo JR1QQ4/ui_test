@@ -278,6 +278,7 @@
     - pip install -U pyautoit 或者 下载文件 python setup.py install
     - 工具：pywin32 和 spy++
     - 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
+    - ea950e7e55475e953a5cf172a0055ee8
 
 ## GitHub
 
