@@ -277,3 +277,18 @@
 - 其他：Autolt库；SendKeys库（不推荐）；Python pywin32库
     - pip install -U pyautoit 或者 下载文件 python setup.py install
     - 工具：pywin32 和 spy++
+    - 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
+
+## GitHub
+
+- 问题1：`remote: Support for password authentication was removed on August 13, 2021...`
+  - 这个需要在 Github 中生成密钥然后提交的时候输入用户名和密钥
+    - 密钥生成位置：Settings -> Developer settings
+    - username 这里填用户名，不是邮箱之类的；password 填写刚才生成的密钥，密钥需要妥善保管
+- 问题2：`OpenSSL SSL_read: Connection was reset, errno 10054`
+  - 这个需要设置证书
+    - 取消 https 证书，remote 设置为 https 时用这个：`git config --global https.sslVerify "false"`
+    - 取消 http 证书，这个不知道需不需要：`git config --global http.sslVerify "false"`
+
+
+
