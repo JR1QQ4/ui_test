@@ -1,0 +1,11 @@
+*** Keywords ***
+百度搜索    [Arguments]    ${searchword}  ${result}
+    open browser    http://www.baidu.com    chrome
+    input text    id:kw    ${searchword}
+    click button    id:su
+    sleep    2
+    ${title}    get title
+    should contain    ${title}    ${result}
+    capture page screenshot    ff.png
+    close browser
+

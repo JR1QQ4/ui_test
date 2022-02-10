@@ -2,6 +2,7 @@
 Documentation     Simple example using SeleniumLibrary.Collections 用于使用集合相关的关键字
 Library           SeleniumLibrary
 Library    Collections
+Resource    业务关键字.txt
 
 *** Variables ***
 
@@ -50,7 +51,7 @@ Test1
     log    ${times}
 
     comment    9.执行Python自定义的方法
-    import library    D:\\projects\\all_tests\\ui_test\\test_robot\\test_rf\\test.py
+    import library    ${CURDIR}/test.py
     ${a}    evaluate    int(10)
     ${b}    evaluate    int(20)
     ${return_result}    add    ${a}    ${b}
@@ -75,5 +76,10 @@ Test1
     log    ${a}
     END
 
+Test2
+    百度搜索    robotframework    robotframework
+
 *** Keywords ***
+
+
 
